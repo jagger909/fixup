@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=fixup
+POSTGRES_USER=QsBepJxqgqImTdnJKfgDmEEXPTZpHNGX
+POSTGRES_PASSWORD=aieSGODAl4N0WuciOgFn4aVqWCTYE0MZWMpGbVQzvoC9SibFq3efRQKX69NhXHqo

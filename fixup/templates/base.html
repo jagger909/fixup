@@ -1,0 +1,345 @@
+{% load static i18n compress %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}FixUp Progect{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+  <!-- Google Fonts
+  ============================================ -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+  {% block css %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    {% compress css %}
+
+      <!-- Nice select css
+      ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+
+      <!-- This core.css file contents all plugins css file
+      ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/core.css' %}">
+
+      <!-- Theme shortcodes/elements style
+      ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/shortcode/shortcodes.css' %}">
+
+      <!--  Theme main style
+      ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/project.css' %}">
+
+      <!-- Color CSS
+          ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/plugins/color.css' %}">
+
+      <!-- Responsive CSS
+      ============================================ -->
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+      <!-- Modernizr JS -->
+      <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+
+
+    {% endcompress %}
+  {% endblock %}
+
+</head>
+
+<body>
+
+<!--Main Wrapper Start-->
+<div class="as-mainwrapper">
+  <!--Header Area Start-->
+  <header id="sticky-header" class="header-area">
+    <!-- Header Top Start -->
+    <div class="header-top">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="header-top-list">
+            <ul class="top-contact-list">
+              <li><a href="#">Позвоните нам: (843) 225-00-67</a></li>
+              <li><a href="#">Email: youremail@example.com</a></li>
+            </ul>
+            <div class="social-links">
+              <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+              <a href="#"><i class="zmdi zmdi-google-plus"></i></a>
+              <a href="#"><i class="zmdi zmdi-pinterest"></i></a>
+              <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Header Top Start -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3">
+          <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/logo/logo.png' %}" alt="FixUp"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-9">
+          <div class="pull-right header-menu">
+            <nav id="primary-menu">
+              <ul class="main-menu text-right">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="job-board.html">Jobs</a>
+                  <ul class="dropdown">
+                    <li><a href="single-job-post.html">Single Job</a></li>
+                    <li><a href="job-details.html">Job Details</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">Pages</a>
+                  <ul class="dropdown">
+                    <li><a href="job-board.html">Job Board</a></li>
+                  </ul>
+                </li>
+                <li><a href="blog.html">Blog</a>
+                  <ul class="dropdown">
+                    <li><a href="blog-details.html">Blog Details</a></li>
+                  </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+            <div class="login-btn">
+              {% if request.user.is_authenticated %}
+                {# URL provided by django-allauth/account/urls.py #}
+                <a class="nav-link" href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                <a class="modal-view button" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+              {% else %}
+                {# URL provided by django-allauth/account/urls.py #}
+                <a id="sign-up-link" class="modal-view button" href="{% url 'account_signup' %}" data-toggle="modal"
+                   data-target="#register">{% trans "Sign Up" %}</a>
+                <a id="log-in-link" class="modal-view button" href="{% url 'account_login' %}" data-toggle="modal"
+                   data-target="#productModal">{% trans "Sign In" %}</a>
+              {% endif %}
+              {#              <a class="modal-view button" href="#" data-toggle="modal" data-target="#register">Register</a>#}
+              {#              <a class="modal-view button" href="#" data-toggle="modal" data-target="#productModal">Login</a>#}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu Area start -->
+    <div class="mobile-menu-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="mobile-menu">
+              <nav id="dropdown">
+                <ul>
+                  <li><a href="index.html">HOME</a>
+                    <ul>
+                      <li><a href="index.html">Home Version One</a></li>
+                      <li><a href="index-2.html">Home Version Two</a></li>
+                      <li><a href="index-3.html">Home Box Layout</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="job-board.html">Job</a>
+                    <ul class="sub-menu">
+                      <li><a href="single-job-post.html">Single Job</a></li>
+                      <li><a href="job-details.html">Job Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="#">Page</a>
+                    <ul class="sub-menu">
+                      <li><a href="job-board.html">Job Board</a></li>
+                      <li><a href="single-job-post.html">Single Job</a></li>
+                      <li><a href="job-details.html">Job Details</a></li>
+                      <li><a href="candidates.html">Candidates</a></li>
+                      <li><a href="resume.html">Resume</a></li>
+                      <li><a href="blog.html">Blog Page</a></li>
+                      <li><a href="blog-details.html">Blog Details</a></li>
+                      <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="blog.html">Blog</a>
+                    <ul class="sub-menu">
+                      <li><a href="blog-details.html">Blog Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu Area end -->
+  </header>
+  <!-- End of Header Area -->
+
+  {% block banner %}{% endblock banner %}
+
+
+  <div class="container">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% block content %}
+      <p>Use this document as a way to quick start any new project.</p>
+    {% endblock content %}
+
+  </div> <!-- /container -->
+
+  <!--Start of Footer Widget-area-->
+  <footer class="footer-area">
+    <div class="footer-top bg-opacity-dark-blue-90 ptb-60">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 pb-sm-30">
+            <div class="subscribe-text">
+              <h3>Subscribe To Our Newsletter</h3>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="subscribe-form">
+              <input type="email" name="email" id="eamil" placeholder="Enter Your Email.....">
+              <button>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-widget-area ptb-80 pb-sm-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-5">
+            <div class="single-footer-widget">
+              <h3 class="text-white mb-26">GET IN TOUCH</h3>
+              <span class="text-white mb-9"><i class="fa fa-phone"></i>+012 345 678 102 </span>
+              <span class="text-white mb-9"><i class="fa fa-envelope"></i>info@example.com</span>
+              <span class="text-white mb-9"><i class="fa fa-globe"></i>www.example.com</span>
+              <span class="text-white mb-9"><i class="fa fa-map-marker"></i>ur address goes here,street.</span>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="single-footer-widget">
+              <h3 class="text-white mb-21">By Regions</h3>
+              <ul class="footer-list">
+                <li><a href="#">Sudia Region</a></li>
+                <li><a href="#">North America</a></li>
+                <li><a href="#">Africa</a></li>
+                <li><a href="#">China</a></li>
+                <li><a href="#">Brazil</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 d-md-none d-lg-block">
+            <div class="single-footer-widget">
+              <h3 class="text-white mb-21">Job Types</h3>
+              <ul class="footer-list">
+                <li><a href="#">Full Time Job</a></li>
+                <li><a href="#">Part Time Job</a></li>
+                <li><a href="#">Temporary Job</a></li>
+                <li><a href="#">Internship Job</a></li>
+                <li><a href="#">Developer</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+            <div class="single-footer-widget">
+              <h3 class="text-white mb-21">Keyword By Jobs</h3>
+              <ul class="footer-list">
+                <li><a href="#">Graphic Designer</a></li>
+                <li><a href="#">HTML Designer</a></li>
+                <li><a href="#">WP Developer</a></li>
+                <li><a href="#">Joomla Developer</a></li>
+                <li><a href="#">Content Writer</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of Footer Widget-area-->
+    <!-- Start of Footer area -->
+    <div class="copyright-area text-center ptb-20">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="footer-text">
+              <span class="text-white block"> Copyright&copy; <a href="#">Jobhere</a>.All right reserved.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer area -->
+</div>
+<!--End of Main Wrapper Area-->
+
+{% block modal %}{% endblock modal %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+
+  <!-- Required by Bootstrap v4.1.1 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+          crossorigin="anonymous"></script>
+
+  <!-- Your stuff: Third-party javascript libraries go here -->
+
+
+  <!-- place project specific Javascript in this file -->
+  {% compress js %}
+
+    <!-- Owl Carousel js
+    ========================================================= -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <!-- Jquery nice select js
+    ========================================================= -->
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+
+    <!-- nivo slider js
+    ========================================================= -->
+    <script src="{% static 'lib/nivo-slider/js/jquery.nivo.slider.js' %}"></script>
+    <script src="{% static 'lib/nivo-slider/home.js' %}"></script>
+
+    <!-- Js plugins included in this file
+    ========================================================= -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <!-- Main js file contents all jQuery plugins activation
+		========================================================= -->
+    <script src="{% static 'js/project.js' %}"></script>
+
+  {% endcompress %}
+
+{% endblock javascript %}
+</body>
+</html>
+ 
